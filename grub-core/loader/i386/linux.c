@@ -309,6 +309,7 @@ grub_linux_setup_video (struct linux_kernel_params *params)
   params->lfb_base = (grub_size_t) framebuffer;
 
 #if defined (GRUB_MACHINE_EFI) && defined (__x86_64__)
+  grub_dprintf ("\n\n this is new code \n\n");
   params->ext_lfb_base = (grub_size_t) (((grub_uint64_t)(grub_size_t) framebuffer) >> 32);
   params->capabilities |= VIDEO_CAPABILITY_64BIT_BASE;
 #endif
