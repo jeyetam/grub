@@ -554,7 +554,7 @@ AC_COMPILE_IFELSE(
 if test "x$grub_cv_cc_target_clang" = xyes && ( test "x$target_cpu" = xi386 \
    || test "x$target_cpu" = xx86_64 || test "x$target_cpu" = xarm \
    || test "x$target_cpu" = xmips || test "x$target_cpu" = xmipsel ); then
-   TARGET_CCASFLAGS="$TARGET_CCASFLAGS -no-integrated-as"
+   TARGET_CCASFLAGS="$TARGET_CCASFLAGS -Wno-error"
 fi
 
 if test "x$grub_cv_cc_target_clang" = xyes && test "x$target_cpu" = xpowerpc; then
@@ -572,8 +572,8 @@ AC_COMPILE_IFELSE(
    # clang <= 3.3 doesn't handle most of ppc assembly, not even inline assembly
    # used by gcrypt
    if test x$grub_cv_cc_target_clang_ame = xno ; then
-     TARGET_CCASFLAGS="$TARGET_CCASFLAGS -no-integrated-as"
-     TARGET_CFLAGS="$TARGET_CFLAGS -no-integrated-as"
+     TARGET_CCASFLAGS="$TARGET_CCASFLAGS -Wno-error"
+     TARGET_CFLAGS="$TARGET_CFLAGS -Wno-error"
    fi
 fi
 
@@ -655,7 +655,7 @@ fi
 if ( test "x$target_cpu" = xi386 || test "x$target_cpu" = xx86_64 ) && test "x$platform" != xemu; then
   # Some toolchains enable these features by default, but they need
   # registers that aren't set up properly in GRUB.
-  TARGET_CFLAGS="$TARGET_CFLAGS -mno-mmx -mno-sse -mno-sse2 -mno-3dnow"
+  TARGET_CFLAGS="$TARGET_CFLAGS -mno-mmx -mno-sse -mno-sse2 -mno-3dnow -mfpmath=387"
 fi
 
 # By default, GCC 4.4 generates .eh_frame sections containing unwind
